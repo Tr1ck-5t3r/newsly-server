@@ -10,7 +10,7 @@ import preferencesRoutes from "./routes/preferences.js";
 
 import sendArticlesRoutes from "./routes/sendArticles.js";
 
-dotenv.config();
+dotenv.config({ path: '.env.local' });
 
 const app = express();
 app.use(cors());
