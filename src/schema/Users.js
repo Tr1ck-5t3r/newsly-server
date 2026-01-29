@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -10,20 +10,30 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  preferences: [{
-    preference: {
-      type: String,
-      required: true
-    },
-    priority: {
-      type: Number,
-      min: 0,
-      max: 1,
-      required: true
-    }
-  }]
+  preferences: {
+    type: [
+      {
+        preference: {
+          type: String,
+          required: true,
+          lowercase: true,
+          trim: true,
+        },
+        priority: {
+          type: Number,
+          min: 1,
+          max: 5,
+          required: true,
+        },
+      },
+    ],
+    default: [
+      { preference: "ai", priority: 3 },
+      { preference: "security", priority: 2 },
+      { preference: "startups", priority: 1 },
+    ],
+  },
 });
 
-const User = mongoose.model('User', userSchema);
-
+const User = mongoose.model("User", userSchema);
 module.exports = User;

@@ -35,7 +35,7 @@ router.post('/register', async (req, res) => {
 // Login
 router.post('/login', async (req, res) => {
   const { username, password } = req.body;
-
+  console.log(req.body);
   try {
     let user = await User.findOne({ username });
     if (!user) {
